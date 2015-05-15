@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Privately</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btnRegCaption">Register</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="usrNameHint">Login</string>
+    <string name="pswHint">Password</string>
+    <string name="btnSaveCredsTerxt">Save</string>
+
+    <!-- Settings -->
+    <string name="prefAcc">Account</string>
+    <string name="prefLog">Login</string>
+    <string name="prefLogDef">101</string>
+    <string name="prefLogSum">Account user ID</string>
+    <string name="prefPsw">Password</string>
+    <string name="prefPswDef">RZtzwm85</string>
+    <string name="prefPswSum">Account password</string>
+    <string name="prefSrv">Server</string>
+    <string name="prefSrvSum">Domain or IP-address</string>
+    <string name="prefSrvDef">5.9.201.234</string>
+    <string name="msgHint">Your message...</string>
+    <string name="btnSendText">Send</string>
+    <string name="title_activity_messaging">MessagingActivity</string>
+
+
+    <string name="user_status_online">В сети</string>
+    <string name="user_status_offline">Не в сети</string>
+</resources>
+
