@@ -39,7 +39,10 @@
             android:name="ru.panoptico.privately.SettingsActivity"
             android:label="Settings"
             android:parentActivityName="ru.panoptico.privately.MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.panoptico.privately.MainActivity" />
         <activity
             android:name="ru.panoptico.privately.MessagingActivity"
             android:label="@string/title_activity_messaging"

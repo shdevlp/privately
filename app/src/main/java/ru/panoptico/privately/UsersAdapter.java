@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -29,13 +31,36 @@ public class UsersAdapter extends ArrayAdapter<User> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_user, parent, false);
         }
 
-        TextView userName = (TextView) convertView.findViewById(R.id.user_name);
-        ImageView userImage = (ImageView) convertView.findViewById(R.id.user_image);
-        TextView userStatus = (TextView) convertView.findViewById(R.id.user_status);
+        TextView  name = (TextView) convertView.findViewById(R.id.user_name);
+        ImageView image = (ImageView) convertView.findViewById(R.id.user_image);
+        TextView  status = (TextView) convertView.findViewById(R.id.user_status);
+        TextView  lastMessage = (TextView) convertView.findViewById(R.id.user_last_message);
+        TextView  lastTime = (TextView) convertView.findViewById(R.id.user_last_time);
+        ImageView lock = (ImageView) convertView.findViewById(R.id.user_lock);
+        TextView  unreadMessageCount = (TextView)convertView.findViewById(R.id.user_unread_message_count);
 
-        userName.setText(user.getName());
-        userImage.setImageResource(user.getImage());
-        userStatus.setText(user.getStatusString());
+        name.setText(user.getName());
+        image.setImageResource(user.getImage());
+        status.setText(user.getStatusString());
+        if (user.getLastMessage() == null) {
+            lastMessage.setText("Последнее сообщение");
+        }
+        lastTime.setText(user.getLastTime());
+
+        if (user.getLock()){
+            lock.setImageResource(R.drawable.lock);
+        } else {
+            lock.setImageResource(R.drawable.unlock);
+        }
+
+        final int count = user.getUnreadMessageCount();
+        String str = null;
+        if (count < 10) {
+            str = "  " + String.valueOf(count);
+        } else {
+            str = String.valueOf(count);
+        }
+        unreadMessageCount.setText(str);
 
         return convertView;
     }

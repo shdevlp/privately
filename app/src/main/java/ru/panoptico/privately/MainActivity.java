@@ -1,10 +1,12 @@
 package ru.panoptico.privately;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.net.rtp.AudioCodec;
 import android.net.rtp.AudioGroup;
@@ -56,6 +58,7 @@ public class MainActivity extends Activity implements ISipEventListener {
 
     SQLiteDatabase db;
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -66,6 +69,8 @@ public class MainActivity extends Activity implements ISipEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Utils.getInstance().setHeaderActionBar(this, "Privately 0.02", false);
 
         // Database
         dbHelper = new PrivatelyDbAdapter(this);

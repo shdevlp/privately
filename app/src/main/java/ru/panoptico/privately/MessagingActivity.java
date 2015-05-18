@@ -20,7 +20,9 @@ import ru.panoptico.privately.db.PrivatelyDbAdapter;
 
 public class MessagingActivity extends Activity implements View.OnClickListener, INewMessageListener {
 
-    private SimpleCursorAdapter dataAdapter;
+    //private SimpleCursorAdapter dataAdapter;
+
+    private DiscussArrayAdapter _adapter = null;
 
     String targetUsr;
     String currentUser;
@@ -46,7 +48,8 @@ public class MessagingActivity extends Activity implements View.OnClickListener,
         currentUser = sharedPref.getString(SettingsActivity.PREF_LOG, "");
 
         ActionBar ab = getActionBar();
-        ab.setTitle(usr);
+        //ab.setTitle(usr);
+        Utils.getInstance().setHeaderActionBar(this, usr, true);
 
         editTextMessage = (EditText) findViewById(R.id.editTextMessage);
         btnSend = (Button) findViewById(R.id.btnSend);
@@ -62,6 +65,7 @@ public class MessagingActivity extends Activity implements View.OnClickListener,
         // Allow the activity to manage lifetime of the cursor
         startManagingCursor(cursor);
 
+        /*
         int[] to = new int[] {
                 R.id.usr,
                 R.id.text
@@ -71,6 +75,28 @@ public class MessagingActivity extends Activity implements View.OnClickListener,
                 PrivatelyDbAdapter.KEY_FROM,
                 PrivatelyDbAdapter.KEY_TEXT
         };
+        */
+
+        if (_adapter != null) {
+            _adapter.clear();
+            _adapter = null;
+        }
+        _adapter = new DiscussArrayAdapter(getApplicationContext(), R.layout.listitem_discuss);
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String keyFrom = cursor.getString(cursor.getColumnIndex(PrivatelyDbAdapter.KEY_FROM));
+                String keyText = cursor.getString(cursor.getColumnIndex(PrivatelyDbAdapter.KEY_TEXT));
+                boolean isLeft = keyFrom.equalsIgnoreCase(currentUser);
+                String message = keyFrom + "\n" + keyText;
+
+                _adapter.add(new OneComment(isLeft, message));
+            }
+        }
+
+
+
+        /*
 
         dataAdapter = new SimpleCursorAdapter(
                 this,
@@ -80,9 +106,10 @@ public class MessagingActivity extends Activity implements View.OnClickListener,
                 to,
                 0
         );
+        */
 
         ListView lvMsg = (ListView) findViewById(R.id.lvMsg);
-        lvMsg.setAdapter(dataAdapter);
+        lvMsg.setAdapter(_adapter);
         lvMsg.setSelection(lvMsg.getCount() - 1);
     }
 

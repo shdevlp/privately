@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bitprofi-privately.iml" filepath="$PROJECT_DIR$/bitprofi-privately.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privately.iml" filepath="$PROJECT_DIR$/privately.iml" />
+      <module fileurl="file://$PROJECT_DIR$/privately.iml" filepath="$PROJECT_DIR$/privately.iml" />
     </modules>
   </component>
 </project>
